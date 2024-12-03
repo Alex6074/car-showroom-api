@@ -1,9 +1,15 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'ru.clevertec'
 version = '1.0-SNAPSHOT'
+
+application {
+    mainClass = 'ru.clevertec.Main'
+}
+
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
