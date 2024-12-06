@@ -21,8 +21,10 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -39,7 +41,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     @ToString.Exclude
@@ -49,10 +51,12 @@ public class Client {
     @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     private List<String> contacts;
 
+    @CreationTimestamp
     @Column(name = "registration_date", nullable = false)
     private LocalDate registrationDate;
 
     @ToString.Exclude
+    @Builder.Default
     @ManyToMany
     @JoinTable(
             name = "client_car",
@@ -60,10 +64,11 @@ public class Client {
             inverseJoinColumns = @JoinColumn(name = "car_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 
     @ToString.Exclude
+    @Builder.Default
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 }

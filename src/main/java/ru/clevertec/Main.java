@@ -13,7 +13,7 @@ import ru.clevertec.repository.ReviewRepository;
 import ru.clevertec.util.DatabaseFiller;
 import ru.clevertec.util.HibernateUtil;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Main {
@@ -21,9 +21,9 @@ public class Main {
     public static void main(String[] args) {
         DatabaseFiller.fillDatabase();
         mainTest();
-        testCriteriaApi();
+        /*testCriteriaApi();
         testFullTextSearch();
-        testL2Cache();
+        testL2Cache();*/
         HibernateUtil.shutdown();
     }
 
@@ -99,7 +99,7 @@ public class Main {
                 .brand("Tesla")
                 .model("Model 3")
                 .year(2020)
-                .price(25000)
+                .price(BigDecimal.valueOf(25000))
                 .showroom(showroom)
                 .category(sedan)
                 .build();
@@ -126,7 +126,6 @@ public class Main {
         Client client = Client.builder()
                 .name("John")
                 .contacts(List.of("email@example.com", "+1234567890"))
-                .registrationDate(LocalDate.now())
                 .build();
         clientRepository.create(client);
         System.out.println("Registered client: " + client);

@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,12 +43,13 @@ public class CarShowroom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address", nullable = false, length = 150)
     private String address;
 
+    @Builder.Default
     @OneToMany(mappedBy = "showroom", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 }

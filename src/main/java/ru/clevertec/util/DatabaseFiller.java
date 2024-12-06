@@ -11,6 +11,7 @@ import ru.clevertec.repository.CategoryRepository;
 import ru.clevertec.repository.ClientRepository;
 import ru.clevertec.repository.ReviewRepository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
@@ -57,7 +58,7 @@ public class DatabaseFiller {
                     .brand(i % 2 == 0 ? "Toyota" : "BMW")
                     .model("Model-" + i)
                     .year(2020 + i % 3)
-                    .price(20000D + i * 3000)
+                    .price(BigDecimal.valueOf(20000D + i * 3000))
                     .showroom(i % 2 == 0 ? showroom1 : showroom2)
                     .build();
 
