@@ -1,0 +1,24 @@
+datasource:
+  url: jdbc:postgresql://localhost:5433/CAR_SHOWROOM_DB
+  user: root
+  password: root
+  driver: org.postgresql.Driver
+
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  show_sql: true
+  format_sql: true
+  ddl_auto: update
+  search:
+    backend.type: lucene
+    backend.directory.type: local-filesystem
+    backend.directory.root: ./build/lucene-indexes
+  cache:
+    use_second_level_cache: true
+    use_query_cache: true
+    region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+    javax.cache.uri: classpath:ehcache.xml
+    javax.cache.provider: org.ehcache.jsr107.EhcacheCachingProvider
+
+liquibase:
+  changelog : db/changelog/db.changelog-master.xml
