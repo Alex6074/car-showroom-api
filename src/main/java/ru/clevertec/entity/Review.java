@@ -16,7 +16,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 @Entity
 @Table(name = "reviews")
@@ -26,7 +25,6 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 @AllArgsConstructor
 @Builder
 @ToString
-@Indexed
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
