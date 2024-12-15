@@ -8,7 +8,6 @@
 - Java: 21
 - Hibernate: ORM для работы с базой данных.
 - PostgreSQL: Реляционная база данных.
-- Ehcache: Для реализации кэша второго уровня.
 - Docker Compose: Для запуска базы данных PostgreSQL.
 
 ## Требования
@@ -33,12 +32,9 @@ docker-compose up -d
 docker ps
 ```
 
-### 4. Сборка проекта
-Соберите проект с помощью Gradle:
-```bash
-.\gradlew build
-```
-### 4. Деплой проекта
-Задеплойте проект с помощью tomcat(настройки tomcat ниже)
+### 3. Проверка работы spring boot starter 
 
-![img.png](img.png)
+![img_1.png](img_1.png)
+При отправке запроса в консоли видим сообщение
+
+2024-12-16T00:48:32.114+03:00  INFO 28648 --- [nio-8080-exec-1] r.c.aspect.PerformanceMonitorAspect      : Method [List ru.clevertec.service.CarService.findCarsByParameters(String,Integer,String,Double,Double)] executed in [179] ms.

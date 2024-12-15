@@ -14,6 +14,7 @@ import ru.clevertec.exception.CarShowroomNotFoundException;
 import ru.clevertec.mapper.CarMapper;
 import ru.clevertec.mapper.CarShowroomMapper;
 import ru.clevertec.mapper.CategoryMapper;
+import ru.clevertec.annotation.MonitorPerformance;
 import ru.clevertec.repository.CarRepository;
 import ru.clevertec.repository.CarShowroomRepository;
 
@@ -35,12 +36,14 @@ public class CarService {
         return carMapper.toCarDto(car);
     }
 
+    @MonitorPerformance
     @Transactional(readOnly = true)
     public CarDto findById(Long id) {
         return carMapper.toCarDto(carRepository.findById(id)
                 .orElseThrow(() -> CarNotFoundException.byCarId(id)));
     }
 
+    @MonitorPerformance
     @Transactional(readOnly = true)
     public List<CarDto> findAll() {
         return carMapper.toCarDtoList(carRepository.findAll());
@@ -76,6 +79,7 @@ public class CarService {
         carRepository.save(car);
     }
 
+    @MonitorPerformance
     @Transactional(readOnly = true)
     public List<CarDto> findCarsByParameters(String brand, Integer year, String category, Double minPrice, Double maxPrice) {
         return carMapper.toCarDtoList(carRepository.findByFilters(brand, year, category, minPrice, maxPrice));
